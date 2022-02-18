@@ -1,0 +1,699 @@
+<odoo>
+  <data>
+
+    <!-- Vistas de alumno-->
+
+    <record model="ir.ui.view" id="relaciones.alumno_list_view">
+      <field name="name">relaciones.alumno.view.tree</field>
+      <field name="model">relaciones.alumno</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="nombre"/>
+          <field name="tutor_id" />
+        </tree>
+      </field>
+    </record>
+
+<!-- search -->
+
+    <record model="ir.ui.view" id="relaciones.alumno_search_view">
+      <field name="name">relaciones.alumno.view.search</field>
+      <field name="model">relaciones.alumno</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="nombre"/>
+          <field name="tutor_id" />
+          <group>
+            <filter name="group_by_nombre" string="nombre" context="{'gropup_by':'nombre'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+
+
+    <!-- form -->
+
+    <record model="ir.ui.view" id="relaciones.alumno_form_view">
+      <field name="name">relaciones.alumno.view.form</field>
+      <field name="model">relaciones.alumno</field>
+      <field name="arch" type="xml">
+        <form string="Información alumno">
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                DNI <field name="name" placeholder="dni"/>
+              </h1>
+            </div>
+            <group>
+              <group>
+                <separator string="Datos"/>
+                <field name="nombre" placeholder="nombre"/>
+
+          <field name="tutor_id" />
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+
+    </record>
+
+
+
+
+
+
+
+
+    <!-- Definición de menús-->
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="relaciones.alumno_action_window">
+      <field name="name">alumnos</field>
+      <field name="res_model">relaciones.alumno</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    
+    
+    
+    <!-- vista tutor -->
+    
+    <record model="ir.ui.view" id="relaciones.tutor_list_view">
+      <field name="name">relaciones.tutor.view.tree</field>
+      <field name="model">relaciones.tutor</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="dni"/>
+          <field name="alumnos_ids" />
+          <field name="asignatura_ids" />
+        </tree>
+      </field>
+    </record>
+
+<!-- search -->
+
+    <record model="ir.ui.view" id="relaciones.tutor_search_view">
+      <field name="name">relaciones.tutor.view.search</field>
+      <field name="model">relaciones.tutor</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="dni"/>
+          <field name="alumnos_ids" />
+          <field name="asignatura_ids" />
+          <group>
+            <filter name="group_by_nombre" string="nombre" context="{'gropup_by':'nombre'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+
+
+    <!-- form -->
+
+    <record model="ir.ui.view" id="relaciones.tutor_form_view">
+      <field name="name">relaciones.tutor.view.form</field>
+      <field name="model">relaciones.tutor</field>
+      <field name="arch" type="xml">
+        <form string="Información tutor">
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                Nombre <field name="name" placeholder="nombre"/>
+              </h1>
+            </div>
+            <group>
+              <group>
+                <separator string="Datos"/>
+                <field name="dni" placeholder="dni"/>
+
+                <field name="alumnos_ids" />
+
+                <field name="asignatura_ids" />
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+
+    </record>
+
+
+
+
+<!-- Vista asignatura  -->
+    
+    
+        
+    <record model="ir.ui.view" id="relaciones.asignatura_list_view">
+      <field name="name">relaciones.asignatura.view.tree</field>
+      <field name="model">relaciones.asignatura</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="nombre"/>
+          <field name="tutor_ids" />
+          <!--  
+                <field name="libro_rel" />
+              -->   
+        </tree>
+      </field>
+    </record>
+
+<!-- search -->
+
+    <record model="ir.ui.view" id="relaciones.asignatura_search_view">
+      <field name="name">relaciones.asignatura.view.search</field>
+      <field name="model">relaciones.asignatura</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="nombre"/>
+          <field name="tutor_ids" />
+          <!--  
+                <field name="libro_rel" />
+             -->   
+          <group>
+            <filter name="group_by_nombre" string="nombre" context="{'gropup_by':'nombre'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+
+
+    <!-- form -->
+
+    <record model="ir.ui.view" id="relaciones.asignatura_form_view">
+      <field name="name">relaciones.asignatura.view.form</field>
+      <field name="model">relaciones.asignatura</field>
+      <field name="arch" type="xml">
+        <form string="Información asignatura">
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                Código <field name="name" placeholder="codigo"/>
+              </h1>
+            </div>
+            <group>
+              <group>
+                <separator string="Datos"/>
+                <field name="nombre" placeholder="nombre"/>
+
+                
+                <field name="tutor_ids" />
+                <!-- 
+                <field name="libro_rel" />
+                -->
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+
+    </record>
+
+<!-- Vista aula  -->
+    
+    
+        
+    <record model="ir.ui.view" id="relaciones.aula_list_view">
+      <field name="name">relaciones.aula.view.tree</field>
+      <field name="model">relaciones.aula</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="aula"/>
+        </tree>
+      </field>
+    </record>
+
+<!-- search -->
+
+    <record model="ir.ui.view" id="relaciones.aula_search_view">
+      <field name="name">relaciones.aula.view.search</field>
+      <field name="model">relaciones.aula</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="aula"/>
+          <group>
+            <filter name="group_by_nombre" string="nombre" context="{'gropup_by':'nombre'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+
+
+    <!-- form -->
+
+    <record model="ir.ui.view" id="relaciones.aula_form_view">
+      <field name="name">relaciones.aula.view.form</field>
+      <field name="model">relaciones.aula</field>
+      <field name="arch" type="xml">
+        <form string="Información aula">
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                Nombre <field name="name" placeholder="Nombre"/>
+              </h1>
+            </div>
+            <group>
+              <group>
+                <separator string="Datos"/>
+                <field name="aula" placeholder="Nº Aula"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+
+    </record>
+
+<!-- Vista colegio  -->
+
+<record model="ir.ui.view" id="relaciones.colegio_list_view">
+      <field name="name">relaciones.colegio.view.tree</field>
+      <field name="model">relaciones.colegio</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="codigo"/>
+        </tree>
+      </field>
+    </record>
+
+<!-- search -->
+
+    <record model="ir.ui.view" id="relaciones.colegio_search_view">
+      <field name="name">relaciones.colegio.view.search</field>
+      <field name="model">relaciones.colegio</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="codigo"/>
+          <group>
+            <filter name="group_by_nombre" string="nombre" context="{'gropup_by':'nombre'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+
+
+    <!-- form -->
+
+    <record model="ir.ui.view" id="relaciones.colegio_form_view">
+      <field name="name">relaciones.colegio.view.form</field>
+      <field name="model">relaciones.colegio</field>
+      <field name="arch" type="xml">
+        <form string="Información colegio">
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                Nombre <field name="name" placeholder="Nombre"/>
+              </h1>
+            </div>
+            <group>
+              <group>
+                <separator string="Datos"/>
+                <field name="codigo" placeholder="codigo"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+
+    </record>
+
+
+
+
+<!-- Vista director  -->
+
+
+
+<record model="ir.ui.view" id="relaciones.director_list_view">
+      <field name="name">relaciones.director.view.tree</field>
+      <field name="model">relaciones.director</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="tiempo"/>
+        </tree>
+      </field>
+    </record>
+
+<!-- search -->
+
+    <record model="ir.ui.view" id="relaciones.director_search_view">
+      <field name="name">relaciones.director.view.search</field>
+      <field name="model">relaciones.director</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="tiempo"/>
+          <group>
+            <filter name="group_by_nombre" string="nombre" context="{'gropup_by':'nombre'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+
+
+    <!-- form -->
+
+    <record model="ir.ui.view" id="relaciones.director_form_view">
+      <field name="name">relaciones.director.view.form</field>
+      <field name="model">relaciones.director</field>
+      <field name="arch" type="xml">
+        <form string="Información Director">
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                Nombre <field name="name" placeholder="Nombre"/>
+              </h1>
+            </div>
+            <group>
+              <group>
+                <separator string="Datos"/>
+                <field name="tiempo" placeholder="Tiempo"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+
+    </record>
+
+
+
+<!-- Vista proveedores  -->
+
+
+<record model="ir.ui.view" id="relaciones.proveedores_list_view">
+      <field name="name">relaciones.proveedores.view.tree</field>
+      <field name="model">relaciones.proveedores</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="producto"/>
+        </tree>
+      </field>
+    </record>
+
+<!-- search -->
+
+    <record model="ir.ui.view" id="relaciones.proveedores_search_view">
+      <field name="name">relaciones.proveedores.view.search</field>
+      <field name="model">relaciones.proveedores</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="producto"/>
+          <group>
+            <filter name="group_by_nombre" string="nombre" context="{'gropup_by':'nombre'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+
+
+    <!-- form -->
+
+    <record model="ir.ui.view" id="relaciones.proveedores_form_view">
+      <field name="name">relaciones.proveedores.view.form</field>
+      <field name="model">relaciones.proveedores</field>
+      <field name="arch" type="xml">
+        <form string="Información proveedores">
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                Nombre <field name="name" placeholder="Nombre"/>
+              </h1>
+            </div>
+            <group>
+              <group>
+                <separator string="Datos"/>
+                <field name="producto" placeholder="Producto"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+
+    </record>
+
+
+<!-- Vista libro  -->
+
+
+
+<record model="ir.ui.view" id="relaciones.libro_list_view">
+      <field name="name">relaciones.libro.view.tree</field>
+      <field name="model">relaciones.libro</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="editorial"/>
+          <!--  
+                <field name="asignatura_rel" />
+            -->     
+        </tree>
+      </field>
+    </record>
+
+<!-- search -->
+
+    <record model="ir.ui.view" id="relaciones.libro_search_view">
+      <field name="name">relaciones.libro.view.search</field>
+      <field name="model">relaciones.libro</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="editorial"/>
+          <!--  
+                <field name="asignatura_rel" />
+           -->     
+          <group>
+            <filter name="group_by_nombre" string="nombre" context="{'gropup_by':'nombre'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+
+
+    <!-- form -->
+
+    <record model="ir.ui.view" id="relaciones.libro_form_view">
+      <field name="name">relaciones.libro.view.form</field>
+      <field name="model">relaciones.libro</field>
+      <field name="arch" type="xml">
+        <form string="Información libro">
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                Nombre <field name="name" placeholder="Nombre"/>
+              </h1>
+            </div>
+            <group>
+              <group>
+                <separator string="Datos"/>
+                <field name="editorial" placeholder="Editorial"/>
+                <!--  
+                <field name="asignatura_rel" />
+                -->
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+
+    </record>
+
+
+
+<!-- Vista curso  -->
+
+
+<record model="ir.ui.view" id="relaciones.curso_list_view">
+      <field name="name">relaciones.curso.view.tree</field>
+      <field name="model">relaciones.curso</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="curso"/>
+        </tree>
+      </field>
+    </record>
+
+<!-- search -->
+
+    <record model="ir.ui.view" id="relaciones.curso_search_view">
+      <field name="name">relaciones.curso.view.search</field>
+      <field name="model">relaciones.curso</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="curso"/>
+          <group>
+            <filter name="group_by_nombre" string="nombre" context="{'gropup_by':'nombre'}" />
+          </group>
+        </search>
+      </field>
+    </record>
+
+
+    <!-- form -->
+
+    <record model="ir.ui.view" id="relaciones.curso_form_view">
+      <field name="name">relaciones.curso.view.form</field>
+      <field name="model">relaciones.curso</field>
+      <field name="arch" type="xml">
+        <form string="Información curso">
+          <sheet>
+            <div class="oe_title">
+              <h1>
+                Nombre <field name="name" placeholder="Nombre"/>
+              </h1>
+            </div>
+            <group>
+              <group>
+                <separator string="Datos"/>
+                <field name="curso" placeholder="Letra"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+
+    </record>
+
+
+    <!-- Definición de menús-->
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="relaciones.tutor_action_window">
+      <field name="name">Tutores</field>
+      <field name="res_model">relaciones.tutor</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="relaciones.alumno_action_window">
+      <field name="name">alumnos</field>
+      <field name="res_model">relaciones.alumno</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="relaciones.asignatura_action_window">
+      <field name="name">asignatura</field>
+      <field name="res_model">relaciones.asignatura</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="relaciones.aula_action_window">
+      <field name="name">aula</field>
+      <field name="res_model">relaciones.aula</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="relaciones.colegio_action_window">
+      <field name="name">colegio</field>
+      <field name="res_model">relaciones.colegio</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="relaciones.director_action_window">
+      <field name="name">director</field>
+      <field name="res_model">relaciones.director</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="relaciones.proveedores_action_window">
+      <field name="name">proveedores</field>
+      <field name="res_model">relaciones.proveedores</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="relaciones.libro_action_window">
+      <field name="name">libro</field>
+      <field name="res_model">relaciones.libro</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="relaciones.curso_action_window">
+      <field name="name">curso</field>
+      <field name="res_model">relaciones.curso</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--        Menu sin relaciones         -->
+
+     <!-- aula -->
+    <menuitem name="relaciones" id="relaciones.menu_root"/>
+    <menuitem name="Aula" id="relaciones.menu_aula" parent="relaciones.menu_root"/>
+    <menuitem name="Lista" id="relaciones.menu_aula_list" parent="relaciones.menu_aula"
+              action="relaciones.aula_action_window"/>
+
+    <!-- colegio -->
+    <menuitem name="relaciones" id="relaciones.menu_root"/>
+    <menuitem name="Colegio" id="relaciones.menu_colegio" parent="relaciones.menu_root"/>
+    <menuitem name="Ver" id="relaciones.menu_colegio_list" parent="relaciones.menu_colegio"
+              action="relaciones.colegio_action_window"/>
+    <!-- director -->
+    <menuitem name="relaciones" id="relaciones.menu_root"/>
+    <menuitem name="Director" id="relaciones.menu_director" parent="relaciones.menu_root"/>
+    <menuitem name="Ver" id="relaciones.menu_director_list" parent="relaciones.menu_director"
+              action="relaciones.director_action_window"/>
+    <!-- proveedores -->
+    <menuitem name="relaciones" id="relaciones.menu_root"/>
+    <menuitem name="Proveedores" id="relaciones.menu_proveedores" parent="relaciones.menu_root"/>
+    <menuitem name="Ver" id="relaciones.menu_proveedores_list" parent="relaciones.menu_proveedores"
+              action="relaciones.proveedores_action_window"/>
+    <!-- libro  -->
+    <menuitem name="relaciones" id="relaciones.menu_root"/>
+    <menuitem name="Libros" id="relaciones.menu_libro" parent="relaciones.menu_root"/>
+    <menuitem name="Lista" id="relaciones.menu_libro_list" parent="relaciones.menu_libro"
+              action="relaciones.libro_action_window"/>
+    
+   
+    <!-- curso -->
+    <menuitem name="relaciones" id="relaciones.menu_root"/>
+    <menuitem name="Curso" id="relaciones.menu_curso" parent="relaciones.menu_root"/>
+    <menuitem name="Ver" id="relaciones.menu_curso_list" parent="relaciones.menu_curso"
+              action="relaciones.curso_action_window"/>
+
+
+
+    <!--        Menu con relaciones          -->
+
+      <menuitem name="relaciones" id="relaciones.menu_root"/>
+
+      <menuitem name="Alumnos" id="relaciones.menu_alumno" parent="relaciones.menu_root"/>
+      <menuitem name="Tutores" id="relaciones.menu_tutor" parent="relaciones.menu_root"/>
+      <menuitem name="Asignaturas" id="relaciones.menu_asignatura" parent="relaciones.menu_root"/>
+      <!-- 
+      <menuitem name="Libros" id="relaciones.menu_libro" parent="relaciones.menu_root"/>
+      -->
+      <menuitem name="List" id="relaciones.menu_alumno_list" parent="relaciones.menu_alumno"
+              action="relaciones.alumno_action_window"/>
+
+      <menuitem name="List" id="relaciones.menu_tutor_list" parent="relaciones.menu_tutor"
+              action="relaciones.tutor_action_window"/>
+
+      <menuitem name="List" id="relaciones.menu_asignatura_list" parent="relaciones.menu_asignatura"
+              action="relaciones.asignatura_action_window"/> 
+        
+      <!--  <menuitem name="List" id="relaciones.menu_libro_list" parent="relaciones.menu_libro"
+             action="relaciones.libro_action_window"/>--> 
+        
+
+
+  </data>
+</odoo>
